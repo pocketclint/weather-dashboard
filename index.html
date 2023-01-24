@@ -11,14 +11,37 @@
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <aside class="col-3">
-        <div class="search">
+    
+    <div class="search-form">
             <h2>City Search</h2>
-                <form class="search-box">
-                    <input type="text" placeholder="Houston" name="search">
-                    <button type="submit">Search</button>
+                <form id="search-form">
+                    <input id="search" type="text" placeholder="Houston">
+                    <button class="search-btn"type="submit">Search</button>
                 </form>
         </div>
-    </aside>
+
+    <div class="aside">
+        <h4>Recent Searches</h4>
+        <p><span id="weatherlist"></span></p>
+        <button id="clear">Clear</button>  
+    </div>
+    
+    <div class="info">
+        <section id="weatherinfo"></section>
+    </div>
+
+    <div id="forecast">
+    </div>
+
+    <script
+        src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+        crossorigin="anonymous"></script>
+    <script
+        src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+        integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="./Assets/js/script.js"></script>
 </body>
 </html>
