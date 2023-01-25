@@ -46,20 +46,8 @@ header {
     padding-left: 20px;
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
-    text-align: end;
+    text-align: center;
     padding: 15px;
-}
-
-.aside{
-    position: absolute;
-    justify-content: right;
-    margin: 10px;
-    padding: 10px;
-    border-left: 1px solid rgb(0, 0, 0);
-    border-right: 1px solid rgb(0, 0, 0);
-    text-transform: capitalize;
-    min-width: 30%;
-    height: 20%;
 }
 
 li {
@@ -67,4 +55,25 @@ li {
     padding: 7px;
     color: #251749;
     border: 1px solid #251749;
+}
+
+.day-element {
+  display: inline-block;
+  color: #3e3055;
+  width: 20%;
+  height: 20%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 20px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  text-align: end;
+  padding: 15px;
+}
+
+#history .button {
+  display: list-item;
+  flex: auto;
+  flex-wrap: wrap;
+  justify-content: center;
 }
