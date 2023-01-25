@@ -1,11 +1,12 @@
+// global variables
 const APIKey = "4c8c080764185f72f0ba88307580a057"
 const weatherInfoEl = $('#weatherinfo')
-// var searchHistory = $('#cities')
 const forecastEl = $('#forecast')
 const searchEl = $('#search')
 var searchHistory = JSON.parse(localStorage.getItem("cities")) || [];
 let historyEl = document.querySelector("#history");
 
+// history is retained on refresh of website
 function init() {
     if (searchHistory.length > 0) {
         let max = searchHistory.length >= 5 ? 5 : searchHistory.length;
@@ -23,6 +24,7 @@ function init() {
     }
 }
 
+// various input methods for submits and clicks
 $("#search-form").on("submit", function(event) {
     event.preventDefault();
     let searchInput = $('#search').val();
@@ -46,7 +48,7 @@ let historyButtonClick = function(event) {
     }
 };
 
-
+// pulls primary weather information box
 function searchWeather(searchInput) {
     $.ajax({
       url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&appid=" + APIKey + "&units=imperial",
@@ -55,8 +57,8 @@ function searchWeather(searchInput) {
         console.log(data)
 
         let iconURL = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-        let weatherIcon = document.createElement("img");
-        weatherIcon.setAttribute("src", iconURL);
+        let icon = document.createElement("img");
+        icon.setAttribute("src", iconURL);
 
         weatherInfoEl.empty();
         weatherInfoEl.append($('<div>').addClass('row'));
@@ -65,7 +67,7 @@ function searchWeather(searchInput) {
         $('#info-box').append($('<div>'));
         };    
         $('#info-box').children().eq(0).append($('<h2>').text(`${data.name}`));
-        $('#info-box').children().eq(1).append($(weatherIcon));
+        $('#info-box').children().eq(1).append($(icon));
         $('#info-box').children().eq(2).append($('<p>').text(`Temp: ${data.main.temp} F`));
         $('#info-box').children().eq(3).append($('<p>').text(`Wind: ${data.wind.speed} MPH`));
         $('#info-box').children().eq(4).append($('<p>').text(`Humidity: ${data.main.humidity}%`));
@@ -85,21 +87,7 @@ function searchWeather(searchInput) {
     });
 }
 
-// function recentSearches (searchInput) {
-//     $.ajax({
-//         url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&appid=" + APIKey + "&units=imperial",
-//         method: "GET"
-//     }).then((data) => {
-//         $("#cities").append($('<li>').text(data.name));
-//         $('li').addClass("past-search")
-        
-//     let searchbuttons = document.querySelector(".past-search")
-//         searchbuttons.addEventListener("click", click => {
-//         searchWeather(click.target.innerText)
-//         })
-//     })
-// }
-
+// pulls 5 day weather forecast
 function searchForecast(searchInput) {
     let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchInput}&appid=${APIKey}&units=imperial`;
     fetch(requestUrl)
